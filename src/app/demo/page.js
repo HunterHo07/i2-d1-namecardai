@@ -348,7 +348,6 @@ export default function DemoPage() {
   // Live Showcase Demo - 5 Finished Cards
   const LiveShowcaseDemo = () => {
     const [showcaseMode, setShowcaseMode] = useState('carousel'); // 'carousel', 'grid', 'tilt'
-    const [selectedShowcaseCard, setSelectedShowcaseCard] = useState(0);
 
     const handleCarouselSelect = (card, index) => {
       setSelectedShowcaseCard(index);

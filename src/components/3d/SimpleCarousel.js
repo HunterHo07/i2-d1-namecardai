@@ -27,33 +27,56 @@ const SimpleCarousel = ({ cards, onCardSelect, activeCardIndex = 0 }) => {
   }, [currentIndex, cards, onCardSelect]);
 
   const handleCardSelect = (index) => {
+    console.log('Card selected:', index); // Debug log
     setCurrentIndex(index);
     setIsAutoPlaying(false);
+
+    if (onCardSelect && cards[index]) {
+      onCardSelect(cards[index], index);
+    }
 
     // Resume auto-play after 10 seconds
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
   const nextCard = (e) => {
-    e?.stopPropagation();
+    console.log('Next card clicked'); // Debug log
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
     const newIndex = (currentIndex + 1) % cards.length;
+    console.log('Moving to index:', newIndex); // Debug log
+
     setCurrentIndex(newIndex);
     setIsAutoPlaying(false);
+
     if (onCardSelect && cards[newIndex]) {
       onCardSelect(cards[newIndex], newIndex);
     }
+
     // Resume auto-play after 10 seconds
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
   const prevCard = (e) => {
-    e?.stopPropagation();
+    console.log('Previous card clicked'); // Debug log
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
     const newIndex = (currentIndex - 1 + cards.length) % cards.length;
+    console.log('Moving to index:', newIndex); // Debug log
+
     setCurrentIndex(newIndex);
     setIsAutoPlaying(false);
+
     if (onCardSelect && cards[newIndex]) {
       onCardSelect(cards[newIndex], newIndex);
     }
+
     // Resume auto-play after 10 seconds
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
@@ -127,31 +150,48 @@ const SimpleCarousel = ({ cards, onCardSelect, activeCardIndex = 0 }) => {
 
         {/* Navigation Arrows */}
         <button
-          onClick={prevCard}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-surface-dark/80 backdrop-blur-sm border border-electric-purple/30 rounded-full flex items-center justify-center text-text-primary hover:bg-surface-light/80 hover:border-neon-blue/50 transition-all duration-300 z-20"
+          type="button"
+          onClick={(e) => {
+            console.log('Left arrow clicked');
+            prevCard(e);
+          }}
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-gradient-to-r from-electric-purple to-neon-blue backdrop-blur-sm border-2 border-neon-blue/50 rounded-full flex items-center justify-center text-white font-bold text-xl hover:scale-110 hover:shadow-lg hover:shadow-neon-blue/50 transition-all duration-300 z-30 cursor-pointer"
+          style={{ pointerEvents: 'auto' }}
         >
           ←
         </button>
-        
+
         <button
-          onClick={nextCard}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-surface-dark/80 backdrop-blur-sm border border-electric-purple/30 rounded-full flex items-center justify-center text-text-primary hover:bg-surface-light/80 hover:border-neon-blue/50 transition-all duration-300 z-20"
+          type="button"
+          onClick={(e) => {
+            console.log('Right arrow clicked');
+            nextCard(e);
+          }}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-gradient-to-r from-neon-blue to-electric-purple backdrop-blur-sm border-2 border-neon-blue/50 rounded-full flex items-center justify-center text-white font-bold text-xl hover:scale-110 hover:shadow-lg hover:shadow-neon-blue/50 transition-all duration-300 z-30 cursor-pointer"
+          style={{ pointerEvents: 'auto' }}
         >
           →
         </button>
       </div>
 
       {/* Dots Navigation */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-3 z-30">
         {cards.map((_, index) => (
           <button
             key={index}
-            onClick={() => handleCardSelect(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            type="button"
+            onClick={(e) => {
+              console.log('Dot clicked:', index);
+              e.preventDefault();
+              e.stopPropagation();
+              handleCardSelect(index);
+            }}
+            className={`w-4 h-4 rounded-full transition-all duration-300 cursor-pointer ${
               index === currentIndex
-                ? 'bg-neon-blue scale-125 shadow-lg shadow-neon-blue/50'
-                : 'bg-text-secondary/30 hover:bg-text-secondary/60'
+                ? 'bg-neon-blue scale-125 shadow-lg shadow-neon-blue/50 border-2 border-white/50'
+                : 'bg-text-secondary/40 hover:bg-neon-blue/60 hover:scale-110 border border-white/20'
             }`}
+            style={{ pointerEvents: 'auto' }}
           />
         ))}
       </div>

@@ -103,60 +103,138 @@ const HeroSection = () => {
             </p>
           </div>
 
-          {/* Mini Demo Preview */}
-          <div className="relative max-w-md mx-auto">
-            <div className="bg-surface-dark/80 backdrop-blur-md rounded-2xl p-6 border border-electric-purple/30 hover:border-neon-blue/50 transition-all duration-300 group">
-              <div className="relative">
-                {/* Simulated 3D Card */}
-                <div className="w-full h-32 bg-gradient-to-br from-neon-blue via-electric-purple to-hologram-pink rounded-xl shadow-2xl shadow-neon-blue/30 transform group-hover:scale-105 group-hover:rotate-3 transition-all duration-500">
-                  <div className="absolute inset-0 bg-white/10 rounded-xl backdrop-blur-sm">
-                    <div className="p-4 h-full flex flex-col justify-between">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-8 h-8 bg-white/20 rounded-full"></div>
+          {/* Interactive Hero Demo */}
+          <div className="relative max-w-2xl mx-auto">
+            <div className="bg-surface-dark/80 backdrop-blur-md rounded-3xl p-8 border border-electric-purple/30 hover:border-neon-blue/50 transition-all duration-500 group">
+
+              {/* Demo Header */}
+              <div className="text-center mb-6">
+                <h3 className="text-lg font-semibold text-text-primary mb-2">
+                  🎭 Interactive Demo Preview
+                </h3>
+                <p className="text-sm text-text-secondary">
+                  Hover and click to experience the magic
+                </p>
+              </div>
+
+              {/* 3D Card Stack */}
+              <div className="relative h-48 flex items-center justify-center">
+                {/* Background Cards */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-64 h-40 bg-gradient-to-br from-electric-purple/30 to-hologram-pink/30 rounded-xl transform rotate-6 scale-95 opacity-60"></div>
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-64 h-40 bg-gradient-to-br from-cyber-green/30 to-matrix-green/30 rounded-xl transform -rotate-3 scale-90 opacity-40"></div>
+                </div>
+
+                {/* Main Interactive Card */}
+                <div className="relative z-10 w-64 h-40 bg-gradient-to-br from-neon-blue via-electric-purple to-hologram-pink rounded-xl shadow-2xl shadow-neon-blue/40 transform group-hover:scale-110 group-hover:rotate-2 transition-all duration-700 cursor-pointer">
+
+                  {/* Card Content */}
+                  <div className="absolute inset-0 bg-white/10 rounded-xl backdrop-blur-sm p-4">
+                    <div className="h-full flex flex-col justify-between">
+
+                      {/* Header */}
+                      <div className="flex items-center space-x-3">
+                        <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-lg animate-pulse">
+                          🤖
+                        </div>
                         <div>
-                          <div className="w-16 h-2 bg-white/30 rounded mb-1"></div>
-                          <div className="w-12 h-1.5 bg-white/20 rounded"></div>
+                          <div className="text-white font-semibold text-sm">Dr. Sarah Chen</div>
+                          <div className="text-white/70 text-xs">AI Research Director</div>
                         </div>
                       </div>
-                      <div className="space-y-1">
-                        <div className="w-20 h-1.5 bg-white/30 rounded"></div>
-                        <div className="w-16 h-1.5 bg-white/20 rounded"></div>
+
+                      {/* Company */}
+                      <div className="text-center">
+                        <div className="text-white font-bold text-sm mb-1">TechCorp AI Labs</div>
+                        <div className="text-white/60 text-xs italic">
+                          "Building the future of AI..."
+                        </div>
+                      </div>
+
+                      {/* Stats */}
+                      <div className="flex justify-between text-xs">
+                        <div className="text-center">
+                          <div className="text-cyber-green font-bold">15.4K</div>
+                          <div className="text-white/60">Views</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-quantum-gold font-bold">98%</div>
+                          <div className="text-white/60">Trust</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-hologram-pink font-bold">78%</div>
+                          <div className="text-white/60">Engage</div>
+                        </div>
                       </div>
                     </div>
                   </div>
+
+                  {/* Floating Elements */}
+                  <div className="absolute -top-3 -right-3 w-4 h-4 bg-neon-blue rounded-full animate-ping"></div>
+                  <div className="absolute -bottom-3 -left-3 w-3 h-3 bg-electric-purple rounded-full animate-pulse"></div>
+                  <div className="absolute top-1/2 -right-4 w-2 h-2 bg-cyber-green rounded-full animate-bounce"></div>
+
+                  {/* AI Status */}
+                  <div className="absolute top-2 right-2 flex items-center gap-1 bg-black/30 rounded-full px-2 py-1">
+                    <div className="w-1.5 h-1.5 bg-cyber-green rounded-full animate-pulse"></div>
+                    <span className="text-white text-xs font-mono">AI</span>
+                  </div>
                 </div>
-                
-                {/* Floating particles */}
-                <div className="absolute -top-2 -right-2 w-2 h-2 bg-neon-blue rounded-full animate-ping"></div>
-                <div className="absolute -bottom-2 -left-2 w-1.5 h-1.5 bg-electric-purple rounded-full animate-pulse"></div>
               </div>
-              
-              <p className="text-sm text-text-secondary mt-4 group-hover:text-neon-blue transition-colors duration-300">
-                ✨ Live 3D Card Preview
-              </p>
+
+              {/* Interactive Features */}
+              <div className="grid grid-cols-3 gap-4 mt-6">
+                <div className="text-center p-3 bg-surface-light/30 rounded-lg hover:bg-neon-blue/10 transition-colors cursor-pointer group/feature">
+                  <div className="text-2xl mb-1 group-hover/feature:scale-110 transition-transform">🎤</div>
+                  <div className="text-xs text-text-secondary group-hover/feature:text-neon-blue transition-colors">Voice AI</div>
+                </div>
+                <div className="text-center p-3 bg-surface-light/30 rounded-lg hover:bg-electric-purple/10 transition-colors cursor-pointer group/feature">
+                  <div className="text-2xl mb-1 group-hover/feature:scale-110 transition-transform">👁️</div>
+                  <div className="text-xs text-text-secondary group-hover/feature:text-electric-purple transition-colors">AR Scan</div>
+                </div>
+                <div className="text-center p-3 bg-surface-light/30 rounded-lg hover:bg-cyber-green/10 transition-colors cursor-pointer group/feature">
+                  <div className="text-2xl mb-1 group-hover/feature:scale-110 transition-transform">📊</div>
+                  <div className="text-xs text-text-secondary group-hover/feature:text-cyber-green transition-colors">Analytics</div>
+                </div>
+              </div>
+
+              {/* Demo CTA */}
+              <div className="text-center mt-6">
+                <Link href="/demo">
+                  <button className="px-6 py-2 bg-gradient-to-r from-neon-blue to-electric-purple rounded-lg text-white font-semibold text-sm hover:scale-105 transition-transform duration-300 shadow-lg shadow-neon-blue/30">
+                    🚀 Try Full Demo
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/demo">
-              <Button 
-                variant="primary" 
-                size="lg"
-                className="text-lg font-semibold px-8 py-4 shadow-2xl shadow-neon-blue/30 hover:shadow-electric-purple/40"
-              >
-                Try Live Demo
-              </Button>
+          {/* Main CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <Link href="/demo" className="group">
+              <button className="relative px-12 py-5 bg-gradient-to-r from-neon-blue via-electric-purple to-hologram-pink rounded-2xl text-white font-bold text-xl shadow-2xl shadow-neon-blue/40 hover:shadow-electric-purple/60 transform hover:scale-105 transition-all duration-300 overflow-hidden">
+                {/* Animated background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-hologram-pink via-electric-purple to-neon-blue opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                {/* Button content */}
+                <div className="relative z-10 flex items-center gap-3">
+                  <span className="text-2xl">🚀</span>
+                  <span>Get Started Free</span>
+                  <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                </div>
+
+                {/* Shine effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+              </button>
             </Link>
-            
-            <Link href="/pitch">
-              <Button 
-                variant="outline" 
-                size="lg"
-                className="text-lg font-semibold px-8 py-4"
-              >
+
+            <Link href="/pitch" className="group">
+              <button className="px-8 py-4 border-2 border-electric-purple/50 rounded-xl text-electric-purple font-semibold text-lg hover:bg-electric-purple/10 hover:border-electric-purple hover:scale-105 transition-all duration-300 backdrop-blur-sm">
+                <span className="mr-2">📺</span>
                 Watch Pitch
-              </Button>
+              </button>
             </Link>
           </div>
 
