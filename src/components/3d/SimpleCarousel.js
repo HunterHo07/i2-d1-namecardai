@@ -29,17 +29,33 @@ const SimpleCarousel = ({ cards, onCardSelect, activeCardIndex = 0 }) => {
   const handleCardSelect = (index) => {
     setCurrentIndex(index);
     setIsAutoPlaying(false);
-    
+
     // Resume auto-play after 10 seconds
     setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
-  const nextCard = () => {
-    handleCardSelect((currentIndex + 1) % cards.length);
+  const nextCard = (e) => {
+    e?.stopPropagation();
+    const newIndex = (currentIndex + 1) % cards.length;
+    setCurrentIndex(newIndex);
+    setIsAutoPlaying(false);
+    if (onCardSelect && cards[newIndex]) {
+      onCardSelect(cards[newIndex], newIndex);
+    }
+    // Resume auto-play after 10 seconds
+    setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
-  const prevCard = () => {
-    handleCardSelect((currentIndex - 1 + cards.length) % cards.length);
+  const prevCard = (e) => {
+    e?.stopPropagation();
+    const newIndex = (currentIndex - 1 + cards.length) % cards.length;
+    setCurrentIndex(newIndex);
+    setIsAutoPlaying(false);
+    if (onCardSelect && cards[newIndex]) {
+      onCardSelect(cards[newIndex], newIndex);
+    }
+    // Resume auto-play after 10 seconds
+    setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
   const getCardPosition = (index) => {

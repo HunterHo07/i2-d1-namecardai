@@ -9,6 +9,7 @@ import SimpleCarousel from '@/components/3d/SimpleCarousel';
 import ARSimulation from '@/components/3d/ARSimulation';
 import VoiceInteraction from '@/components/ai/VoiceInteraction';
 import TiltCard, { EnhancedTiltCard } from '@/components/effects/TiltCard';
+import { ScheduleMeetingModal, ResearchPortfolioModal, LinkedInConnectModal } from '@/components/ui/Modal';
 import { sampleCards, generateDynamicContent } from '@/data/sampleCards';
 
 export default function DemoPage() {
@@ -22,6 +23,10 @@ export default function DemoPage() {
   const [isSearching, setIsSearching] = useState(false);
   const [cameraActive, setCameraActive] = useState(false);
   const [voiceActive, setVoiceActive] = useState(false);
+  const [showScheduleModal, setShowScheduleModal] = useState(false);
+  const [showPortfolioModal, setShowPortfolioModal] = useState(false);
+  const [showLinkedInModal, setShowLinkedInModal] = useState(false);
+  const [selectedShowcaseCard, setSelectedShowcaseCard] = useState(0);
   const videoRef = useRef(null);
 
   // Generate QR code on component mount
@@ -136,6 +141,32 @@ export default function DemoPage() {
   const handleARCardDetected = (card) => {
     setScannedCard(card);
     console.log('AR card detected:', card);
+  };
+
+  // Modal handlers
+  const handleActionClick = (actionType) => {
+    switch (actionType) {
+      case 'schedule_meeting':
+      case 'pitch_meeting':
+      case 'consultation':
+      case 'growth_consultation':
+        setShowScheduleModal(true);
+        break;
+      case 'view_research':
+      case 'view_portfolio':
+      case 'case_study':
+      case 'investment_deck':
+      case 'sustainability_report':
+        setShowPortfolioModal(true);
+        break;
+      case 'connect_linkedin':
+      case 'follow_linkedin':
+        setShowLinkedInModal(true);
+        break;
+      default:
+        // For other actions, show a simple success message
+        alert(`✅ ${actionType.replace('_', ' ')} action triggered!`);
+    }
   };
 
   const Card3DPreview = ({ card }) => (
@@ -435,7 +466,8 @@ export default function DemoPage() {
                             key={index}
                             variant="outline"
                             size="sm"
-                            className="w-full justify-start"
+                            className="w-full justify-start hover:bg-neon-blue/10 hover:border-neon-blue/50 transition-all duration-300"
+                            onClick={() => handleActionClick(action.type)}
                           >
                             <span className="mr-2">{action.icon}</span>
                             {action.label}
@@ -864,6 +896,25 @@ export default function DemoPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-dark-space via-deep-purple to-midnight-blue">
+      {/* Modals */}
+      <ScheduleMeetingModal
+        isOpen={showScheduleModal}
+        onClose={() => setShowScheduleModal(false)}
+        cardData={sampleCards[selectedShowcaseCard] || selectedCard}
+      />
+
+      <ResearchPortfolioModal
+        isOpen={showPortfolioModal}
+        onClose={() => setShowPortfolioModal(false)}
+        cardData={sampleCards[selectedShowcaseCard] || selectedCard}
+      />
+
+      <LinkedInConnectModal
+        isOpen={showLinkedInModal}
+        onClose={() => setShowLinkedInModal(false)}
+        cardData={sampleCards[selectedShowcaseCard] || selectedCard}
+      />
+
       {/* Hero Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
