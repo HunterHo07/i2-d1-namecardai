@@ -1,5 +1,7 @@
 # NameCardAI - AR-Enhanced Digital Business Cards
 
+Live Demo: https://i2-d1-namecardai.vercel.app
+
 ## 🚀 Startup Vision
 An AR-enhanced digital business card platform that lets users share stunning, interactive profiles via QR, NFC, facial recognition, or camera scan—no app required.
 
